@@ -1,42 +1,27 @@
 import { Injectable, inject } from '@angular/core';
 import { Message, PhpData } from './message';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class Auth {
-  private messageService = inject(Message);
-
-  // Attribut conservant l'état d'authentification
-  public is_authenticated: boolean = false;
+  private message = inject(Message);
+  public is_authenticated = false;
 
   constructor() {
     console.log("Une instance de AuthService vient d'être construite.");
   }
 
-  /**
-   * Envoie les identifiants au backend et met à jour l'état interne
-   */
   sendAuthentication(login: string, password: string): Observable<PhpData> {
-    return new Observable<PhpData>((subscriber) => {
-      // On effectue la requête unique au backend
-      this.messageService.sendMessage('checkLogin', {
-        login: login,
-        password: password
-      }).subscribe({
-        next: (res: PhpData) => {
-          // Mise à jour de l'attribut interne
-          this.is_authenticated = (res.status === 'done' || res.status === 'ok');
-
-          // Transmission de la réponse au composant (subscriber)
-          subscriber.next(res);
-          subscriber.complete();
-        },
-        error: (err) => {
-          this.is_authenticated = false;
-          subscriber.error(err);
-        }
+    return new Observable((subscriber: Subscriber<PhpData>) => {
+      this.message.sendMessage('checkLogin', { login, password }).subscribe(res => {
+        // Mise à jour de l'état interne
+        this.is_authenticated = (res.status === 'ok');
+        
+        // On transmet la réponse au LoginComponent
+        subscriber.next(res);
+        subscriber.complete();
       });
     });
   }

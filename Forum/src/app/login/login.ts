@@ -1,36 +1,43 @@
-import { Component, signal, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Indispensable pour ngModel
-import { Message, PhpData } from '../services/message';
+import { Component, inject, signal } from '@angular/core'; // N'oubliez pas signal
+import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Auth } from '../services/auth';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule], // On importe FormsModule ici
+  imports: [FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.scss'
 })
 export class Login {
-  private service = inject(Message);
-  private router = inject(Router);
-  errorMessage = signal("");
-  // Définition des signaux pour le formulaire
-  username = signal('');
-  password = signal('');
+  // Vos erreurs signalent l'usage de "username" dans le HTML
+  username = ""; 
+  password = "";
+  
+  // Vos erreurs signalent l'usage de "errorMessage()" dans le HTML
+  errorMessage = signal<string | null>(null);
 
-  // Méthode appelée lors du clic sur le bouton
+  private authService = inject(Auth);
+  private router = inject(Router);
+
   onSubmit() {
-    this.service.sendMessage("checkLogin", {
-      login: this.username(),
-      password: this.password()
-    }).subscribe((result: PhpData) => {
-      console.log(result);
-      if (result.status == "error") {
-        this.errorMessage.set(result.data.reason);
-      } else {
-        this.errorMessage.set("");
-        this.router.navigate(['/courses']);
+    // Réinitialise l'erreur à chaque tentative
+    this.errorMessage.set(null);
+
+    // On utilise "username" ici car c'est ce qui est lié au HTML
+    this.authService.sendAuthentication(this.username, this.password).subscribe({
+      next: (res) => {
+        if (res.status === 'ok') {
+          this.router.navigate(['/courses']);
+        } else {
+          // Met à jour le signal pour l'affichage HTML
+          this.errorMessage.set("Identifiants incorrects");
+        }
+      },
+      error: (err) => {
+        this.errorMessage.set("Erreur de connexion au serveur");
       }
-    })
+    });
   }
 }
