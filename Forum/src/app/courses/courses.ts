@@ -57,6 +57,13 @@ export class Courses implements OnInit {
 
   rediriger() {
     if (typeof this.idMonComp == 'undefined') this.idMonComp = 'vide';
-    this.router.navigate(['/cours', this.idMonComp]);
+    // check if id exists in this.UE
+    for (let i = 0; i < this.UE().length; i++) {
+      if (this.UE()[i].IdCours == parseInt(this.idMonComp)) {
+        this.router.navigate(['/topic', this.idMonComp]);
+        return;
+      }
+    }
+    alert("Ce cours n'existe pas")
   }
 }
