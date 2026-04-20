@@ -1,0 +1,8 @@
+Options -Indexes
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ /forumSite/index.html [NC,L]
