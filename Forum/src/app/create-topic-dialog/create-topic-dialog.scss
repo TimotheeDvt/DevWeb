@@ -1,0 +1,28 @@
+.topic-modal {
+  border: none;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px); // Effet de flou sur le fond
+  }
+}
+
+.modal-header h3 {
+  margin-top: 0;
+  color: #2c3e50;
+}
+
+.modal-body {
+  margin: 20px 0;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}

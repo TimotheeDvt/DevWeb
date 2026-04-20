@@ -1,0 +1,31 @@
+<button class="btn btn-primary" (click)="resetForm(); topicDialog.showModal()">
+  Nouveau sujet
+</button>
+
+<dialog #topicDialog id="topicDialog" class="topic-modal">
+  <div class="modal-header">
+    <h3>Créer un nouveau sujet</h3>
+  </div>
+
+  <div class="modal-body">
+    <div class="form-group">
+      <label>Sujet :</label>
+      <input type="text" [(ngModel)]="newTopicName" class="form-control" placeholder="Entrez le titre du sujet...">
+    </div>
+
+    @if (errorMessage()) {
+      <div class="alert alert-danger mt-3">
+        {{ errorMessage() }}
+      </div>
+    }
+  </div>
+
+  <div class="modal-footer">
+    <button class="btn btn-secondary" (click)="topicDialog.close()">
+      Fermer
+    </button>
+    <button class="btn btn-success" (click)="createTopic()">
+      Créer le sujet
+    </button>
+  </div>
+</dialog>

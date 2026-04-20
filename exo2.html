@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"></head>
+<body>
+<button onclick="maFonction ();">mon bouton</button>
+<ul id="liste"></ul>
+
+<script>
+    let nb = 1; // le numéro de l'item (variable globale)
+    function maFonction () { // à chaque appel : rajoute un nouvel item
+        // 1. on crée un nouveau noeud <li></li>
+        let node = document.createElement("li");
+
+        // 2. on crée un noeud contenant du texte
+        let textnode = document.createTextNode(`item ${nb++}`);
+
+        // 3. place le noeud de texte à l'intérieur du <li></li>
+        node.appendChild(textnode);
+
+        // 4. on rajoute le nouvel item au <ul></ul>
+        document.getElementById("liste").appendChild(node);
+    }
+</script>
+</body>
+</html>

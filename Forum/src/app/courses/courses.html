@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="header-actions">
+        <div class="search-box">
+            <input [(ngModel)]="idMonComp" placeholder="Saisir un ID de cours..." />
+            <button class="btn-primary" (click)="rediriger()">
+                Aller au cours
+            </button>
+        </div>
+        <h2>{{ titre() }}</h2>
+    </div>
+
+    <div class="courses-grid">
+        @for (module of UE(); track module.Nom) {
+            <a [routerLink]="['/topic', module.IdCours]">
+            <div class="course-card">
+                <div class="card-header">
+                    <span class="course-id">#{{ module.IdCours || 0 }}</span>
+                    <h3 class="course-name">{{ module.Nom }}</h3>
+                </div>
+
+                <div class="card-body">
+                    <div class="stat-item">
+                        <span class="label">Messages</span>
+                        <span class="value">{{ module.NbP || 0 }}</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="label">Topics</span>
+                        <span class="value">{{ module.NbT || 0 }}</span>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <small>Dernière activité : {{ module.lastMsg || 'Aucune' }}</small>
+                </div>
+            </div>
+            </a>
+        } @empty {
+            <div class="empty-state">
+                <p>Aucun cours disponible pour le moment.</p>
+            </div>
+        }
+    </div>
+</div>

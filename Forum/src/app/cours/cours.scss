@@ -1,0 +1,135 @@
+.container {
+    max-width: 900px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    padding: 0 20px;
+}
+
+.header-actions {
+    margin-bottom: 30px;
+    text-align: center;
+
+    h2 {
+        color: #2c3e50;
+        margin-top: 20px;
+    }
+}
+
+.search-box {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+
+    input {
+        padding: 10px 15px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        width: 250px;
+        transition: border-color 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+    }
+}
+
+.btn-primary {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+
+    &:hover {
+        background-color: #2980b9;
+    }
+}
+
+.courses-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.course-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: 1px solid #eee;
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+    }
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+
+    .course-id {
+        background: #e1f5fe;
+        color: #0288d1;
+        padding: 4px 8px;
+        border-radius: 6px;
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+
+    .course-name {
+        margin: 0;
+        font-size: 1.1rem;
+        color: #34495e;
+    }
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-around;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+
+    .stat-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .label {
+            font-size: 0.75rem;
+            color: #7f8c8d;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+.card-footer {
+    color: #95a5a6;
+    font-size: 0.85rem;
+    border-top: 1px solid #f1f1f1;
+    padding-top: 10px;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 40px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    color: #7f8c8d;
+}

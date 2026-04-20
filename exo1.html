@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1 id="titre">Titre de la page</h1>
+
+<!-- on crée un bouton et on associe l'exécution de
+la fonction javascript maFonction quand on clique -->
+<button onclick="maFonction ();">mon bouton</button>
+<script>
+  function maFonction () {
+    document.getElementById('titre').innerHTML = 'mon nouveau titre';
+  }</script>
+</body>
+</html>

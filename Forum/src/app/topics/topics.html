@@ -1,0 +1,46 @@
+<app-breadcrumb [paths]="breadcrumb()" />
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>Echanges du cours</h2>
+
+    <app-create-topic-dialog (onTopicCreated)="addTopicToList($event)" />
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle">
+      <thead class="table-light">
+        <tr>
+          <th style="width: 80px;">ID</th>
+          <th>Sujet</th>
+          <th>Auteur</th>
+          <th class="text-center">Messages</th>
+          <th class="text-center">Last Message</th>
+          <th class="text-end">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (t of topics(); track t.Id) {
+          <tr>
+            <td><span class="badge bg-secondary">#{{ t.Id }}</span></td>
+            <td><strong>{{ t.Nom }}</strong></td>
+            <td>{{ t.idUser }}</td>
+            <td class="text-center">{{ t.nbP }}</td>
+            <td class="text-center">{{ t.lastMsg }}</td>
+            <td class="text-end">
+              <button class="btn btn-sm btn-outline-primary">
+                Lire la suite
+              </button>
+            </td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="5" class="text-center py-5 text-muted">
+              Aucun sujet de discussion n'a été créé pour ce cours.
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>

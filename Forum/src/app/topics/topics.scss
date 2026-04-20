@@ -1,0 +1,24 @@
+.container {
+  max-width: 1000px;
+}
+
+.table {
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+
+  thead th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+  }
+
+  tbody tr {
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: #f8f9fa;
+    }
+  }
+}
