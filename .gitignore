@@ -2,3 +2,6 @@ wamplangues
 wampthemes
 php_exercices
 forum-node-backend/node_modules
+*/.env
+*.key*
+.vscode

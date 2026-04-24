@@ -35,12 +35,13 @@ export class CreateTopicDialog implements OnInit {
 
   createTopic() {
     this.service.sendMessage("saveNewTopic", {
-      IdCours: this.courseId,
+      courseId: this.courseId,
       Nom: this.newTopicName() // On envoie 'Nom' au PHP
     }).subscribe((result: any) => {
       if (result.status === "error") {
         this.errorMessage.set(result.data.reason);
       } else {
+        console.log(result.data)
         this.onTopicCreated.emit(result.data);
         this.resetForm();
         const dialog = document.querySelector<HTMLDialogElement>("#topicDialog");

@@ -1,7 +1,7 @@
 import { Component, signal, inject, OnInit, computed } from '@angular/core'; // Ajoutez computed
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
-import { Message, PhpData } from "../services/message";
+import { Message } from "../services/message";
 import {ActivatedRoute} from '@angular/router';
 
 
@@ -43,7 +43,7 @@ export class Cours implements OnInit {
   ngOnInit() {
     this.idMonComp = this.activatedRoute.snapshot.params['id'];
     this.service.sendMessage("getCours", {
-      id: this.idMonComp
+      courseId: this.idMonComp
     }).subscribe((result: any) => {
       if (result) {
         this.Course.set({

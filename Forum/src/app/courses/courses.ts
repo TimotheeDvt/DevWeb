@@ -1,7 +1,7 @@
 import { Component, signal, inject, OnInit, computed } from '@angular/core'; // Ajoutez computed
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
-import { Message, PhpData } from "../services/message";
+import { Message } from "../services/message";
 
 export interface ICours {
   IdCours: number;
@@ -9,6 +9,11 @@ export interface ICours {
   lastMsg: string;
   NbP : number;
   NbT : number;
+}
+
+interface NodeData {
+  status: string;
+  data: any[];
 }
 
 @Component({
@@ -33,11 +38,11 @@ export class Courses implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.service.sendMessage("getCourses", {}).subscribe((result: any) => {
-      if (Array.isArray(result)) {
+    this.service.sendMessage("getCourses", {}).subscribe((result: NodeData) => {
+      if (Array.isArray(result?.data)) {
         this.UE.set([]);
 
-        result.forEach((element: any) => {
+        result.data.forEach((element: any) => {
           const cours: ICours = {
             IdCours: element.IdCours,
             Nom: element.Nom,

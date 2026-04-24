@@ -3,29 +3,18 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
-export interface PhpData {
-  status: string;
-  data: any;
-}
-
 @Injectable({
   providedIn: 'root',
 })
 export class Message {
   private http = inject(HttpClient);
 
-  sendMessage(url: string, data: any): Observable<PhpData> {
-    const completeUrl = environment.backendPrefix + `/${url}.php`;
+  sendMessage(url: string, data: any): Observable<any> {
+    const completeUrl = environment.backendPrefix + `${url}`;
 
-    const formData = new FormData();
-
-    Object.keys(data).forEach(key => {
-      formData.append(key, data[key]);
-    });
-
-    return this.http.post<PhpData>(
+    return this.http.post<any>(
       completeUrl,
-      formData,
+      data,
       { withCredentials: true }
     );
   }

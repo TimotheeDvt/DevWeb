@@ -12,6 +12,12 @@ export interface ITopic {
   lastMsg: string;
 }
 
+interface NodeData {
+  status: string;
+  data: any;
+}
+
+
 @Component({
   selector: 'app-topics',
   standalone: true,
@@ -36,19 +42,19 @@ export class Topics implements OnInit {
     ]);
 
     // Récupération du nom du cours (en gérant le tableau result[0])
-    this.service.sendMessage("getCours", { IdCours: idStr }).subscribe((result: any) => {
-      if (Array.isArray(result) && result.length > 0) {
+    this.service.sendMessage("getCours", { courseId: idStr }).subscribe((result: NodeData) => {
+      if (result?.data) {
         this.breadcrumb.set([
           { nom: 'Tous les cours', route: '/courses' },
-          { nom: result[0].Nom, route: '' }
+          { nom: result.data.Nom, route: '' }
         ]);
       }
     });
 
     // Récupération des topics
-    this.service.sendMessage("getTopics", { IdCours: idStr }).subscribe((result: any) => {
-      if (Array.isArray(result)) {
-        this.topics.set(result);
+    this.service.sendMessage("getTopics", { courseId: idStr }).subscribe((result: NodeData) => {
+      if (Array.isArray(result.data) && result.data.length > 0) {
+        this.topics.set(result.data);
       } else {
         this.topics.set([]);
       }

@@ -12,9 +12,9 @@ import { Auth } from '../services/auth';
 })
 export class Login {
   // Vos erreurs signalent l'usage de "username" dans le HTML
-  username = ""; 
+  username = "";
   password = "";
-  
+
   // Vos erreurs signalent l'usage de "errorMessage()" dans le HTML
   errorMessage = signal<string | null>(null);
 
