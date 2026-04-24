@@ -5,7 +5,8 @@ import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
 import {
   IonContent, IonHeader, IonTitle, IonToolbar,
-  IonList, IonItem, IonInput, IonButton
+  IonList, IonItem, IonInput, IonButton, AlertController,
+  IonFab
 } from '@ionic/angular/standalone';
 
 @Component({
@@ -30,6 +31,17 @@ export class LoginPage {
   private authService = inject(Auth);
   private router = inject(Router);
 
+  constructor(private alertController: AlertController) { }
+
+  async presentErrorAlert(message: string) {
+    const alert = await this.alertController.create({
+      header: 'Échec de connexion',
+      message: message,
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
   onSubmit() {
     // Réinitialise l'erreur à chaque tentative
     this.errorMessage.set(null);
@@ -41,11 +53,11 @@ export class LoginPage {
           this.router.navigate(['/cours']);
         } else {
           // Met à jour le signal pour l'affichage HTML
-          this.errorMessage.set("Identifiants incorrects");
+          this.presentErrorAlert("Identifiants incorrects. Veuillez réessayer.");
         }
       },
       error: (err) => {
-        this.errorMessage.set("Erreur de connexion au serveur");
+        this.presentErrorAlert("Identifiants incorrects. Veuillez réessayer.");
       }
     });
   }

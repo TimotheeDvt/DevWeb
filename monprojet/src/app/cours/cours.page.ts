@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonBackButton, IonButtons, IonList, IonLabel } from '@ionic/angular/standalone';
 import { Component, signal, inject, OnInit, computed } from '@angular/core'; // Ajoutez computed
 import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
@@ -25,8 +25,10 @@ interface NodeData {
   styleUrls: ['./cours.page.scss'],
   standalone: true,
   imports: [
-    IonContent, IonHeader, IonTitle, IonToolbar, 
-    CommonModule, FormsModule
+    IonContent, IonHeader, IonTitle, IonToolbar,
+    CommonModule, FormsModule,
+    IonBackButton, IonButtons, RouterLink,
+    IonList, IonLabel
   ]
 })
 export class CoursPage {
@@ -68,7 +70,7 @@ export class CoursPage {
     // check if id exists in this.UE
     for (let i = 0; i < this.UE().length; i++) {
       if (this.UE()[i].IdCours == parseInt(this.idMonComp)) {
-        this.router.navigate(['/cours', this.idMonComp]);
+        this.router.navigate(['/topics', this.idMonComp]);
         return;
       }
     }

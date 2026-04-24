@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/cours"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Sujets de discussion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-list inset="true">
+    @for (topic of topics; track topic.Id) {
+    <ion-item button [routerLink]="['/messages', topic.Id]">
+      <ion-label>
+        <h2>{{ topic.Nom }}</h2>
+
+        <p>
+          Dernier message : {{ topic.lastMsg }}
+          <br>
+          Nombre de réponses : {{ topic.nbP }}
+        </p>
+      </ion-label>
+
+      <ion-badge slot="end" color="medium">{{ topic.nbP }}</ion-badge>
+    </ion-item>
+    } @empty {
+    <div class="ion-text-center ion-padding">
+      <p>Aucun sujet disponible pour ce cours.</p>
+    </div>
+    }
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <!-- <ion-fab-button (click)="openCreateTopicAlert()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button> -->
+  </ion-fab>
+</ion-content>

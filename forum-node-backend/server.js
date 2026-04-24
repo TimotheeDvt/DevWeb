@@ -64,7 +64,7 @@ app.post('/getCourses', async (req, res) => {
     }
 });
 
-app.post('/getCours', async (req, res) => {
+app.post('/cours/:courseId', async (req, res) => {
     const session = sessionJWT.decodeSessionCookie(req);
     const userId = session.userId;
 
@@ -74,7 +74,7 @@ app.post('/getCours', async (req, res) => {
 
     sessionJWT.sendSessionCookie(req, res, session);
 
-    const { courseId } = req.body;
+    const courseId = req.params.courseId;
     try {
         const result = await db.getCours(courseId, userId);
         sendMessage(res, result);

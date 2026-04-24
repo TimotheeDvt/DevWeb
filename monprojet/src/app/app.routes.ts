@@ -14,4 +14,9 @@ export const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  // add topics route with a parameters id
+  {
+    path: 'topics/:courseId',
+    loadComponent: () => import('./topics/topics.page').then( m => m.TopicsPage)
+  }
 ];
