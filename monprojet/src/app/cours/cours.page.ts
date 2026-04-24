@@ -24,9 +24,12 @@ interface NodeData {
   templateUrl: './cours.page.html',
   styleUrls: ['./cours.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonContent, IonHeader, IonTitle, IonToolbar, 
+    CommonModule, FormsModule
+  ]
 })
-export class CoursPage implements OnInit {
+export class CoursPage {
   private service = inject(Message);
   private router = inject(Router);
   titre = signal("Composant cours");
@@ -37,7 +40,7 @@ export class CoursPage implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ionViewWillEnter() {
     this.service.sendMessage("getCourses", {}).subscribe((result: NodeData) => {
       if (Array.isArray(result?.data)) {
         this.UE.set([]);
@@ -65,7 +68,7 @@ export class CoursPage implements OnInit {
     // check if id exists in this.UE
     for (let i = 0; i < this.UE().length; i++) {
       if (this.UE()[i].IdCours == parseInt(this.idMonComp)) {
-        this.router.navigate(['/topic', this.idMonComp]);
+        this.router.navigate(['/cours', this.idMonComp]);
         return;
       }
     }

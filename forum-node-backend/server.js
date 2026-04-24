@@ -12,7 +12,8 @@ app.use(cookieParser());
 
 // --- CONFIGURATION HELPER ---
 app.use(cors({
-    origin: (origin, callback) => callback(null, true),
+    // origin: (origin, callback) => callback(null, true),
+    origin: 'http://127.0.0.1:8100',
     credentials: true
 }));
 app.use(express.json());
