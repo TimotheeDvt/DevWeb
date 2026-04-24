@@ -3,14 +3,21 @@ import { Component, inject, signal } from '@angular/core'; // N'oubliez pas sign
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Auth } from '../services/auth';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+import {
+  IonContent, IonHeader, IonTitle, IonToolbar,
+  IonList, IonItem, IonInput, IonButton
+} from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonContent, IonHeader, IonTitle, IonToolbar,
+    IonList, IonItem, IonInput, IonButton, // Nouveaux composants
+    CommonModule, FormsModule
+  ]
 })
 export class LoginPage {
   // Vos erreurs signalent l'usage de "username" dans le HTML

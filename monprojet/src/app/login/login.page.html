@@ -1,32 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Connexion au Forum</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
   <div class="login-wrapper">
-    <div class="login-card">
-      <h2>Connexion au Forum</h2>
+    <ion-list inset="true">
+      <ion-item>
+        <ion-input 
+          label="Identifiant" 
+          labelPlacement="floating" 
+          [(ngModel)]="username" 
+          placeholder="Saisir votre login">
+        </ion-input>
+      </ion-item>
 
-      <div class="form-group">
-        <label>Nom d'utilisateur</label>
-        <div class="input-wrapper">
-          <input type="text" [(ngModel)]="username" placeholder="Identifiant">
-        </div>
-      </div>
+      <ion-item>
+        <ion-input 
+          label="Mot de passe" 
+          labelPlacement="floating" 
+          type="password" 
+          [(ngModel)]="password" 
+          placeholder="••••••••">
+        </ion-input>
+      </ion-item>
+    </ion-list>
 
-      <div class="form-group">
-        <label>Mot de passe</label>
-        <div class="input-wrapper">
-          <input type="password" [(ngModel)]="password" placeholder="••••••••">
-        </div>
-      </div>
-
-      <button class="btn-login" (click)="onSubmit()">
+    <div class="ion-padding">
+      <ion-button expand="block" color="primary" (click)="onSubmit()">
         Se connecter
-      </button>
+      </ion-button>
+    </div>
 
-      @if (errorMessage()) {
+    @if (errorMessage()) {
       <div class="error-message">
         {{ errorMessage() }}
       </div>
-      }
-    </div>
+    }
   </div>
 </ion-content>
