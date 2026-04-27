@@ -5,6 +5,12 @@
     </ion-buttons>
     <ion-title>Sujets de discussion</ion-title>
   </ion-toolbar>
+
+  <ion-buttons slot="end">
+    <ion-button (click)="openCreateTopicAlert()">
+      <ion-icon slot="icon-only" name="add"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
