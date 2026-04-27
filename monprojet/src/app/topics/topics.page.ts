@@ -28,7 +28,18 @@ export class TopicsPage implements OnInit {
   chargerTopics() {
     this.service.sendMessage("getTopics", { courseId: this.courseId })
       .subscribe(res => {
-        this.topics = res.data;
+        this.topics = res.data.map((topic: any) => {
+          return {
+            ...topic,
+            lastMsg: new Date(topic.lastMsg).toLocaleDateString("fr-FR",{
+              year: "numeric",
+              month: "numeric",
+              day: "numeric",
+              hour: "numeric",
+              minute: "numeric"
+            })
+          }
+        });
       }, err => {
         console.log(err);
       });
