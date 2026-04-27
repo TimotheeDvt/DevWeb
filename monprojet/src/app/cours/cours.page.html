@@ -4,6 +4,11 @@
       <ion-back-button defaultHref="/login"></ion-back-button>
     </ion-buttons>
     <ion-title>Liste des Cours</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openSortMenu($event)">
+        <ion-icon slot="icon-only" name="swap-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 

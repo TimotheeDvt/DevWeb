@@ -8,20 +8,13 @@
   <div class="login-wrapper">
     <ion-list inset="true">
       <ion-item>
-        <ion-input 
-          label="Identifiant" 
-          labelPlacement="floating" 
-          [(ngModel)]="username" 
+        <ion-input label="Identifiant" labelPlacement="floating" [(ngModel)]="username"
           placeholder="Saisir votre login">
         </ion-input>
       </ion-item>
 
       <ion-item>
-        <ion-input 
-          label="Mot de passe" 
-          labelPlacement="floating" 
-          type="password" 
-          [(ngModel)]="password" 
+        <ion-input label="Mot de passe" labelPlacement="floating" type="password" [(ngModel)]="password"
           placeholder="••••••••">
         </ion-input>
       </ion-item>
@@ -34,9 +27,9 @@
     </div>
 
     @if (errorMessage()) {
-      <div class="error-message">
-        {{ errorMessage() }}
-      </div>
+    <div class="error-message">
+      {{ errorMessage() }}
+    </div>
     }
   </div>
 </ion-content>

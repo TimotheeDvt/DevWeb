@@ -1,0 +1,13 @@
+<ion-content>
+  <ion-radio-group [value]="selectedTri" (ionChange)="onTriChange($event)">
+    <ion-item>
+      <ion-radio value="nom">Par nom</ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-radio value="date">Par date (dernier post)</ion-radio>
+    </ion-item>
+    <ion-item>
+      <ion-radio value="topics">Par nombre de topics</ion-radio>
+    </ion-item>
+  </ion-radio-group>
+</ion-content>
