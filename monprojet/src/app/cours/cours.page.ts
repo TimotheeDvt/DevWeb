@@ -40,13 +40,12 @@ export class CoursPage {
   titre = signal("Composant cours");
   UE = signal<ICours[]>([]);
 
-  // On crée un signal dérivé qui se mettra à jour automatiquement dès que UE change
   idMonComp !: string;
-  currentTri = 'nom'; // Sauvegarde du tri actuel
+  currentTri = 'nom';
   private popoverController = inject(PopoverController);
 
   constructor() {
-    addIcons({ swapVertical }); // Chargement de l'icône
+    addIcons({ swapVertical });
   }
 
   ionViewWillEnter() {
