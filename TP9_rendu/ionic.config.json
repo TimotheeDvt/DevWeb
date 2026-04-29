@@ -1,0 +1,7 @@
+{
+  "name": "TP9_rendu",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
