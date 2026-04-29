@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{ recette()?.nom | titlecase }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  @if (recette()) {
+    <div class="ion-padding">
+      <p><strong>Nutriscore :</strong> {{ recette().nutriscore }}</p>
+      <p><strong>Temps de préparation :</strong> {{ recette().temps_preparation }}</p>
+
+      <h3>Ingrédients :</h3>
+      <ion-list>
+        @for (ing of recette().ingredients; track ing) {
+          <ion-item>
+            <ion-label>{{ ing }}</ion-label>
+          </ion-item>
+        }
+      </ion-list>
+    </div>
+  }
+</ion-content>

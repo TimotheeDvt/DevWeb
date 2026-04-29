@@ -1,0 +1,9 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>{{ recette.nom | titlecase }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-button (click)="voirIngredients()">Voir ingrédients</ion-button>
+    <ion-button [routerLink]="['/details', recette.nom]"  fill="outline">Détails</ion-button>
+  </ion-card-content>
+</ion-card>
