@@ -23,14 +23,12 @@ export class RecetteComponent {
 
   async voirIngredients() {
     const listeTexte = this.recette.ingredients
-      .map((ing: string) => `• ${ing}`)
+      .map((ing: string) => `- ${ing}`)
       .join(' | ');
 
     const alert = await this.alertCtrl.create({
       header: 'Ingrédients',
       message: listeTexte,
-      backdropDismiss: false,
-
       buttons: ['OK']
     });
 
